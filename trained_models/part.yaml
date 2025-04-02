@@ -1,0 +1,112 @@
+name: rcfm_cms_part
+sigma: 0.0001
+n_steps: 25
+train_type: particle
+flow_type: rcfm
+model_type: knn
+num_epochs: 500
+learningrate: 3e-5
+opt: lion
+loss_type: mse_and_direction
+lr_scheduler: true
+lr_scheduler_dict:
+  gamma: 0.5
+use_swa: true
+check_val_every_n_epoch: 1
+gradient_clip_val: 1.0
+train_class: true
+use_global: true
+zero_neutral_vtx: true
+use_scale_info: true
+sin_cos: true
+time_factor: 1000
+reduce_ds_train: 2800000
+reduce_ds_valid: 35000
+eval_num_events: 10000
+entry_start_train: 0
+entry_start_valid: 2800000
+entry_start_test: 0
+num_workers: 6
+batchsize: 128
+val_batchsize: 1000
+eval_dir: /storage/agrp/dmitrykl/fastsim/FS_evals/
+truth_path_train: /storage/agrp/dmitrykl/fastsim/f_delphes/data/full_event/output/QCD_Pt-470to600_TTbar_Merged/merged_train_v2_pt025_eta27_ghost.root
+truth_path_valid: /storage/agrp/dmitrykl/fastsim/f_delphes/data/full_event/output/QCD_Pt-470to600_TTbar_Merged/merged_train_v2_pt025_eta27_ghost.root
+truth_path_test: /storage/agrp/dmitrykl/fastsim/f_delphes/data/full_event/output/QCD_Pt-600to800_TuneZ2_7TeV_pythia6/merged_test_small_v2_pt025_eta27_ghost.root
+max_particles: 400
+hidden_dim: 96
+global_dim: 20
+act: silu
+num_dit_layers: 8
+num_heads: 6
+mha_config:
+  do_qk_norm: true
+  bias: false
+  attn_type: torch-flex
+var_transform:
+  ptrel:
+    min: 0.0
+    max: 0.796
+    mean: 0.006
+    std: 0.015
+  ht:
+    min: 34.629
+    max: 3301.761
+    mean: 780.979
+    std: 394.733
+  eta:
+    min: -2.7
+    max: 2.7
+    mean: -0.0
+    std: 1.29
+  phi:
+    min: -3.142
+    max: 3.142
+    mean: 0.002
+    std: 1.814
+  vx:
+    min: -198.488
+    max: 292.861
+    mean: 0.206
+    std: 0.691
+  vy:
+    min: -179.167
+    max: 168.16
+    mean: 0.331
+    std: 0.702
+  vz:
+    min: -253.811
+    max: 808.448
+    mean: 0.34
+    std: 5.73
+  npart:
+    min: 0
+    max: 400
+    mean: 165
+    std: 57.85
+  met_x:
+    min: -1e3
+    max: 1e3
+    mean: -0.21
+    std: 37.258
+  met_y:
+    min: -1e3
+    max: 1e3
+    mean: 0.075
+    std: 36.852
+truth_variables:
+- truth_pt
+- truth_eta
+- truth_phi
+- truth_vx
+- truth_vy
+- truth_vz
+- truth_class
+pflow_variables:
+- pflow_pt
+- pflow_eta
+- pflow_phi
+- pflow_vx
+- pflow_vy
+- pflow_vz
+- pflow_class
