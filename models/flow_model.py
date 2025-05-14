@@ -223,9 +223,6 @@ class FlowNet(nn.Module):
             ctxt_dim=3 * hidden_dim,
         )
 
-        self.adaLN_modulation = nn.Sequential(
-            nn.SiLU(), nn.Linear(3 * hidden_dim, hidden_dim * 2, bias=True)
-        )
         self.initialize_weights()
 
     def initialize_weights(self):

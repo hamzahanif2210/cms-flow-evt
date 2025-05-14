@@ -230,7 +230,7 @@ class FlowLightning(LightningModule):
             for key, val in pred_loss.items():
                 self.log(
                     f"pred_{key}",
-                    val,
+                    val.cuda(),
                     batch_size=data[0].shape[0],
                     sync_dist=True,
                 )
