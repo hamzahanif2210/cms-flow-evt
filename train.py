@@ -250,9 +250,7 @@ def print_job_info(args, config):
     print("torch", torch.__version__)
     print("lightning", pytorch_lightning.__version__)
     print("cuda", torch.version.cuda)
-    import dgl
 
-    print("dgl", dgl.__version__)
     if torch.cuda.is_available():
         device_name = torch.cuda.get_device_name(torch.cuda.current_device())
         print("Visible GPUs:", args.gpus, " - ", device_name)
