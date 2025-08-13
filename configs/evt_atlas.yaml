@@ -1,0 +1,63 @@
+name: fm_atlas_pow_evt_net_JZ78
+sigma: 0.0001
+n_steps: 25
+train_type: evt
+flow_type: fm
+
+num_epochs: 500
+learningrate: 3e-5
+opt: lion
+loss_type: mse
+
+lr_scheduler: true
+use_swa: true
+check_val_every_n_epoch: 1
+gradient_clip_val: 1.0
+truth_binary_class: false
+
+reduce_ds_train: -1
+reduce_ds_valid: -1
+eval_num_events: 10000
+
+entry_start_train: 0
+entry_start_valid: 0
+entry_start_test: 0
+
+num_workers: 6
+batchsize: 128
+val_batchsize: 5000
+
+eval_dir: /storage/agrp/dreyet/f_delphes/cms-flow-evt/evals/
+# truth_path_train: /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/train_JZ3-6.root # 370k events
+# truth_path_valid: /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/val_JZ3-6.root   #  35k events
+# truth_path_test:  /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/test_JZ3-6.root  #  50k events
+# truth_path_train: /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/train_JZ1-8.root # 1.3M events
+# truth_path_valid: /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/val_JZ1-8.root   #  138k events
+# truth_path_test:  /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/test_JZ1-8.root  #  170k events
+truth_path_train: /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/train_JZ7-8.root #  140k events
+truth_path_valid: /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/val_JZ7-8.root   #  9500 events
+truth_path_test:  /storage/agrp/dreyet/f_delphes/data/JZ_ATLAS/test_JZ7-8.root  #  20k events
+
+max_particles: 500
+time_pow: true
+use_global: true
+
+hidden_dim: 128
+global_dim: 10
+n_res_blocks: 3
+
+act: gelu
+
+var_transform: !include var_transform_ttbar_qcd.yaml
+
+truth_variables:
+    - truth_pt
+    - truth_eta
+    - truth_phi
+    - truth_class
+    
+pflow_variables:
+    - pflow_pt
+    - pflow_eta
+    - pflow_phi
+    - pflow_class

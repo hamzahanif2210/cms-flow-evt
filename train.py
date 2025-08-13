@@ -195,7 +195,9 @@ def train(args, config, logger):
     # if we pass a checkpoint file, load the previous network
     if args.ckpt_path:
         print("Loading previously trained model from checkpoint file:", args.ckpt_path)
-        model = lght.load_from_checkpoint(args.ckpt_path, config=config)
+        # model = lght.load_from_checkpoint(args.ckpt_path, config=config)
+        ckpt = torch.load(args.ckpt_path, weights_only=False, map_location="cpu")
+        model.net.load_state_dict(ckpt["state_dict"], strict=False)
 
     # share workers between GPUs
     if config["num_gpus"]:
@@ -223,7 +225,7 @@ def train(args, config, logger):
         callbacks=callbacks,
         check_val_every_n_epoch=config.get("check_val_every_n_epoch", 1),
         gradient_clip_val=config.get("gradient_clip_val", None),
-        precision=config.get("precision", "32-true"),
+        precision=config.get("precision", "32"),
         profiler=profiler,
         # strategy="ddp",
     )
@@ -231,7 +233,7 @@ def train(args, config, logger):
     # fit model model
     print("Fitting model...")
     if args.ckpt_path:
-        trainer.fit(model, ckpt_path=args.ckpt_path)
+        trainer.fit(model)#, ckpt_path=args.ckpt_path)
     else:
         trainer.fit(model)
 

@@ -136,9 +136,10 @@ class FastSimDataset(Dataset):
 
         if self.zero_neutral_vtx and self.mode == "train":
             for var in ["vx", "vy", "vz"]:
-                self.full_data_array[f"pflow_{var}"][
-                    self.full_data_array["pflow_class"] > 2
-                ] = 0
+                if f"pflow_{var}" in self.full_data_array:
+                    self.full_data_array[f"pflow_{var}"][
+                        self.full_data_array["pflow_class"] > 2
+                    ] = 0
 
         self.full_data_array["eventNumber"] = torch.tensor(
             self.tree["eventNumber"].array(

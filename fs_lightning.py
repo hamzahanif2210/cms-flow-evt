@@ -482,20 +482,20 @@ class FlowLightning(LightningModule):
 
         pflow_class = pflow[..., -5:].argmax(-1).numpy()[scatter_mask]
         fs_class = fs[..., -5:].argmax(-1).numpy()[scatter_mask]
-        cm = confusion_matrix(pflow_class, fs_class, normalize="true")
-        df_cm = pd.DataFrame(
-            cm,
-            index=["Ch had", "El", "Mu", "Neut had", "Phot"],
-            columns=["Ch had", "El", "Mu", "Neut had", "Phot"],
-        )
-        sns.heatmap(
-            df_cm,
-            annot=True,
-            annot_kws={"size": 8},
-            cmap=sns.cubehelix_palette(start=0.5, rot=-0.5, as_cmap=True),
-            cbar=False,
-            ax=axs[i],
-        )
+        # cm = confusion_matrix(pflow_class, fs_class, normalize="true")
+        # df_cm = pd.DataFrame(
+        #     cm,
+        #     index=["Ch had", "El", "Mu", "Neut had", "Phot"],
+        #     columns=["Ch had", "El", "Mu", "Neut had", "Phot"],
+        # )
+        # sns.heatmap(
+        #     df_cm,
+        #     annot=True,
+        #     annot_kws={"size": 8},
+        #     cmap=sns.cubehelix_palette(start=0.5, rot=-0.5, as_cmap=True),
+        #     cbar=False,
+        #     ax=axs[i],
+        # )
         axs[i].set_title("classes")
         axs[i].set_ylabel("Pflow")
         axs[i].set_xlabel("FastSim")
