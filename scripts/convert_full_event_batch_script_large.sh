@@ -6,7 +6,7 @@
 #SBATCH --output=/project/ctb-stelzer/hamza95/parnassus/logs/large_%x_%A_%a.out
 #SBATCH --error=/project/ctb-stelzer/hamza95/parnassus/logs/large_%x_%A_%a.err
 #SBATCH --account=def-mdanning
-#SBATCH --array=2  # matches jz0 … jz9
+#SBATCH --array=1-9  # matches jz0 … jz9
 
 # Make sure logs dir exists
 mkdir -p /project/ctb-stelzer/hamza95/parnassus/logs
